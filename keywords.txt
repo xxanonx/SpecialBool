@@ -1,0 +1,24 @@
+#######################################
+# Syntax Coloring Map Servo
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+JameSpecialBool	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+rise	KEYWORD2
+fall	KEYWORD2
+change	KEYWORD2
+write	KEYWORD2
+actual	KEYWORD2
+actualNot	KEYWORD2
+auxR	KEYWORD2
+auxW	KEYWORD2
+#######################################
+# Constants (LITERAL1)
+#######################################
