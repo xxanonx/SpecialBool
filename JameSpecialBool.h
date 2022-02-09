@@ -24,4 +24,17 @@ class JameSpecialBool
 	byte special;
 };
 
+class Timer
+{
+  public:
+    Timer(unsigned long time_, bool on);
+    void setTime(unsigned long time_);
+	bool input(bool in_);
+	bool Q();
+	unsigned long time;
+  private:
+	JameSpecialBool in;
+	unsigned long initial_time;
+};
+
 #endif

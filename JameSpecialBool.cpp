@@ -52,3 +52,79 @@ void JameSpecialBool::auxW(int num, byte val){
 		bitWrite(special, (num + 4), val);
 	}
 }
+
+
+
+Timer::Timer(unsigned long time_, bool on){
+	this->setTime(time_);
+	in.auxW(2, on);
+}
+
+void Timer::setTime(unsigned long time_){
+	this->time = time_;
+}
+
+bool Timer::input(bool in_){
+	in.write(in_);
+	if (in.auxR(2)){
+		//On Delay Timer
+		if (in.rise()){
+			initial_time = millis();
+		}
+		else if (in.fall()){
+			in.auxW(1,0);
+			initial_time = 0;
+		}
+	}
+	else if (not in.auxR(2)){
+		//Off Delay Timer
+		if (in.fall()){
+			initial_time = millis();
+		}
+		else if (in.actual()){
+			initial_time = 0;
+			in.auxW(1,1);
+		}
+	}
+	return this->Q();
+}
+
+bool Timer::Q(){
+	/*
+	if (in.actual() and in.auxR(2)){
+		//On Delay Timer
+		if ((initial_time > 0) and ((millis() - initial_time) >= this->time)){
+			in.auxW(1,1);
+		}
+		else{
+			in.auxW(1,0);
+		}
+	}
+	else if (in.actualNot() and not in.auxR(2)){
+		//Off Delay Timer
+		if (initial_time > 0){
+			if ((millis() - initial_time) >= this->time){
+				in.auxW(1,0);
+			}
+			else{
+				in.auxW(1,1);
+			}
+		}
+	}
+	*/
+	//ALOT OF SHIT IS GOING ON HERE!!!!
+	if (initial_time > 0){
+		if ((millis() - initial_time) >= this->time){
+			if (in.actual() == in.auxR(2)){
+				in.auxW(1,in.auxR(2));
+			}
+			
+		}
+		else{
+			in.auxW(1, (not in.auxR(2)));
+		}
+	}
+	
+	return in.auxR(1);
+}
+

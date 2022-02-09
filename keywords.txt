@@ -7,7 +7,7 @@
 #######################################
 
 JameSpecialBool	KEYWORD1
-
+Timer			KEYWORD1
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -19,6 +19,10 @@ actual	KEYWORD2
 actualNot	KEYWORD2
 auxR	KEYWORD2
 auxW	KEYWORD2
+setTime	KEYWORD2
+input	KEYWORD2
+Q		KEYWORD2
+time	KEYWORD2
 #######################################
 # Constants (LITERAL1)
 #######################################
