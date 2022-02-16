@@ -66,6 +66,7 @@ void Timer::setTime(unsigned long time_){
 
 bool Timer::input(bool in_){
 	in.write(in_);
+	
 	if (in.auxR(2)){
 		//On Delay Timer
 		if (in.rise()){
@@ -76,7 +77,7 @@ bool Timer::input(bool in_){
 			initial_time = 0;
 		}
 	}
-	else if (not in.auxR(2)){
+	else{
 		//Off Delay Timer
 		if (in.fall()){
 			initial_time = millis();
@@ -86,6 +87,20 @@ bool Timer::input(bool in_){
 			in.auxW(1,1);
 		}
 	}
+	/*
+	bool ond = in.auxR(2);
+	if ((in.rise() and ond) or (in.fall() and not ond)){
+		initial_time = millis();
+	}
+	else if (in.fall() and ond){
+		in.auxW(1,0);
+		initial_time = 0;
+	}
+	else if (in.actual() and not ond){
+		initial_time = 0;
+		in.auxW(1,1);
+	}
+	*/
 	return this->Q();
 }
 
@@ -112,7 +127,7 @@ bool Timer::Q(){
 		}
 	}
 	*/
-	//ALOT OF SHIT IS GOING ON HERE!!!!
+	//A LOT OF SHIT IS GOING ON HERE!!!!
 	if (initial_time > 0){
 		if ((millis() - initial_time) >= this->time){
 			if (in.actual() == in.auxR(2)){
