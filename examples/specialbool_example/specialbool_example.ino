@@ -1,14 +1,15 @@
-#include <JameSpecialBool.h>
+#include <SpecialBool.h>
+
 /*
- * JameSpecialBool is a class that helps keep memory usage low and has great uses built in!
+ * SpecialBool is a class that helps keep memory usage low and has great uses built in!
  * arduino bools take up a whole byte even though it's states can only be 1 or 0.
- * JameSpecialBool uses that byte to its fullest potential by using individual bits within the byte.
+ * SpecialBool uses that byte to its fullest potential by using individual bits within the byte.
  * 
 */
-byte button = 4;
-byte blue = A0;
-byte yellow = A1;
-JameSpecialBool butt_state;      
+const byte PROGMEM button = 4;
+const byte PROGMEM blue = A0;
+const byte PROGMEM yellow = A1;
+SpecialBool butt_state;      
 byte count = 0;
 
 void setup() {
@@ -20,8 +21,8 @@ void setup() {
 void loop() {
   butt_state.write(not digitalRead(button));
   
-  digitalWrite(blue, (butt_state.rise() or butt_state.auxR(1)));  //state of led is either on rising edge or the state of auxillary bit 1
-  digitalWrite(yellow, (butt_state.fall() or butt_state.auxR(2)));//state of led is true on falling edge or the state of auxillary bit 2
+  digitalWrite(blue, (butt_state.rise() or butt_state.special.f));  //state of led is either on rising edge or the state of auxillary bit 1
+  digitalWrite(yellow, (butt_state.fall() or butt_state.special.g));//state of led is true on falling edge or the state of auxillary bit 2
 
   if (butt_state.rise()){
     //only execute on rising edge
@@ -29,14 +30,14 @@ void loop() {
     switch (count){
 
     case 10:
-      butt_state.auxW(1, 1);  //if the count is 10 write true to auxillary bit one
+      butt_state.special.f = 1;  //if the count is 10 write true to auxillary bit one
       break;
     case 20:
-      butt_state.auxW(2, 1);  //if the count is 20 write true to auxillary bit two
+      butt_state.special.g = 1;  //if the count is 20 write true to auxillary bit two
       break;
     case 30:
-      butt_state.auxW(1, 0);  //if the count is 10 write true to auxillary bit one
-      butt_state.auxW(2, 0);
+      butt_state.special.f = 0;  //if the count is 10 write true to auxillary bit one
+      butt_state.special.g = 0;
       count = 0;
       break;
     }

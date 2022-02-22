@@ -1,13 +1,15 @@
-#include <JameSpecialBool.h>
+#include <SpecialBool.h>
+
 /*
- * JameSpecialBool is a class that helps keep memory usage low and has great uses built in!
+ * SpecialBool is a class that helps keep memory usage low and has great uses built in!
  * arduino bools take up a whole byte even though it's states can only be 1 or 0.
- * JameSpecialBool uses that byte to its fullest potential by using individual bits within the byte.
+ * SpecialBool uses that byte to its fullest potential by using individual bits within the byte.
  * 
 */
-byte button = 4;
-byte blue = A0;
-byte yellow = A1;
+const byte PROGMEM button = 4;
+const byte PROGMEM blue = A0;
+const byte PROGMEM yellow = A1;
+
 Timer butt_state(2000, 1);      
 /*Timer means we are calling the Timer class from the JameSpecialBool library, think of a class as another data
 //type that can be declared by the programmer. butt_state is the name of the instance of this data type just like
