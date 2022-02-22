@@ -1,4 +1,4 @@
-# JameSpecialBool
+# SpecialBool
 Arduino boolean variable class that includes falling and rising edge, change of state, not, and 3 auxiliary "bools". All in the same space as a regular bool
 
 JameSpecialBool is a class that helps keep memory usage low and has great uses built in!
@@ -16,5 +16,5 @@ bit 3: falling edge of variable
 
 bit 4: true when variable has changed states. (bit 2 and 3 in an OR)
 
-bit 5-7: Auxilary bits that can be written to with .auxW() and read with .auxR()
+bit 5-7: Auxilary bits that can be address with "instance of SpecialBool".special
 
