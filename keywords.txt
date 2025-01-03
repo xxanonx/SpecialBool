@@ -1,13 +1,14 @@
 #######################################
-# Syntax Coloring Map Servo
+# keywords for special bools
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-JameSpecialBool	KEYWORD1
+SpecialBool	KEYWORD1
 Timer			KEYWORD1
+sbool KEYWORD1
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -17,12 +18,17 @@ change	KEYWORD2
 write	KEYWORD2
 actual	KEYWORD2
 actualNot	KEYWORD2
-auxR	KEYWORD2
-auxW	KEYWORD2
-setTime	KEYWORD2
 input	KEYWORD2
 Q		KEYWORD2
 time	KEYWORD2
+a		KEYWORD2
+b		KEYWORD2
+c		KEYWORD2
+d		KEYWORD2
+e		KEYWORD2
+f		KEYWORD2
+g		KEYWORD2
+h		KEYWORD2
 #######################################
 # Constants (LITERAL1)
 #######################################

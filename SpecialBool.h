@@ -3,37 +3,44 @@
   Created by McKinley James Pollock, Febuary, 2022.
   Released into the public domain.
 */
-#ifndef JameSpecialBool_h
-#define JameSpecialBool_h
+#ifndef SpecialBool_h
+#define SpecialBool_h
 
 #include "Arduino.h"
 
-class JameSpecialBool
+struct sbool{
+	unsigned int a:1;
+	unsigned int b:1;
+	unsigned int c:1;
+	unsigned int d:1;
+	unsigned int e:1;
+	unsigned int f:1;
+	unsigned int g:1;
+	unsigned int h:1;
+};
+
+class SpecialBool
 {
   public:
-    JameSpecialBool();
+    SpecialBool();
     bool rise();
     bool fall();
 	bool change();
 	void write(byte val);
 	bool actual();
 	bool actualNot();
-	bool auxR(int num);
-	void auxW(int num, byte val);
-  private:
-	byte special;
+	sbool special;
 };
 
 class Timer
 {
   public:
     Timer(unsigned long time_, bool on);
-    void setTime(unsigned long time_);
 	bool input(bool in_);
 	bool Q();
 	unsigned long time;
   private:
-	JameSpecialBool in;
+	SpecialBool in;
 	unsigned long initial_time;
 };
 
